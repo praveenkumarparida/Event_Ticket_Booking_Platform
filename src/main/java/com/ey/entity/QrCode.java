@@ -20,19 +20,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "qr_codes")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 public class QrCode {
 	   @Id
 	   @Column(name = "id", nullable = false, updatable = false)
@@ -74,6 +64,54 @@ public class QrCode {
 		QrCode other = (QrCode) obj;
 		return Objects.equals(createdAt, other.createdAt) && Objects.equals(id, other.id) && status == other.status
 				&& Objects.equals(updatedAt, other.updatedAt) && Objects.equals(value, other.value);
+	   }
+
+	   public UUID getId() {
+		   return id;
+	   }
+
+	   public void setId(UUID id) {
+		   this.id = id;
+	   }
+
+	   public QrCodeStatusEnum getStatus() {
+		   return status;
+	   }
+
+	   public void setStatus(QrCodeStatusEnum status) {
+		   this.status = status;
+	   }
+
+	   public String getValue() {
+		   return value;
+	   }
+
+	   public void setValue(String value) {
+		   this.value = value;
+	   }
+
+	   public Ticket getTicket() {
+		   return ticket;
+	   }
+
+	   public void setTicket(Ticket ticket) {
+		   this.ticket = ticket;
+	   }
+
+	   public LocalDateTime getCreatedAt() {
+		   return createdAt;
+	   }
+
+	   public void setCreatedAt(LocalDateTime createdAt) {
+		   this.createdAt = createdAt;
+	   }
+
+	   public LocalDateTime getUpdatedAt() {
+		   return updatedAt;
+	   }
+
+	   public void setUpdatedAt(LocalDateTime updatedAt) {
+		   this.updatedAt = updatedAt;
 	   }
 	   
 	   

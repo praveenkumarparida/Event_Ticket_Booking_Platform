@@ -25,19 +25,9 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity 
 @Table(name = "events") 
-@Getter 
-@Setter 
-@NoArgsConstructor 
-@AllArgsConstructor 
-@Builder 
 public class Event {
 	   @Id
 	   @Column(name = "id", nullable = false, updatable = false)
@@ -87,6 +77,118 @@ public class Event {
 	   @Column(name = "updated_at", nullable = false) 
 	   private LocalDateTime updatedAt;
 
+	   public UUID getId() {
+		return id;
+	}
+
+	   public void setId(UUID id) {
+		   this.id = id;
+	   }
+
+	   public String getName() {
+		   return name;
+	   }
+
+	   public void setName(String name) {
+		   this.name = name;
+	   }
+
+	   public LocalDateTime getStart() {
+		   return start;
+	   }
+
+	   public void setStart(LocalDateTime start) {
+		   this.start = start;
+	   }
+
+	   public LocalDateTime getEnd() {
+		   return end;
+	   }
+
+	   public void setEnd(LocalDateTime end) {
+		   this.end = end;
+	   }
+
+	   public String getVenue() {
+		   return venue;
+	   }
+
+	   public void setVenue(String venue) {
+		   this.venue = venue;
+	   }
+
+	   public LocalDateTime getSalesStart() {
+		   return salesStart;
+	   }
+
+	   public void setSalesStart(LocalDateTime salesStart) {
+		   this.salesStart = salesStart;
+	   }
+
+	   public LocalDateTime getSalesEnd() {
+		   return salesEnd;
+	   }
+
+	   public void setSalesEnd(LocalDateTime salesEnd) {
+		   this.salesEnd = salesEnd;
+	   }
+
+	   public EventStatusEnum getStatus() {
+		   return status;
+	   }
+
+	   public void setStatus(EventStatusEnum status) {
+		   this.status = status;
+	   }
+
+	   public User getOrganizer() {
+		   return organizer;
+	   }
+
+	   public void setOrganizer(User organizer) {
+		   this.organizer = organizer;
+	   }
+
+	   public List<User> getAttendees() {
+		   return attendees;
+	   }
+
+	   public void setAttendees(List<User> attendees) {
+		   this.attendees = attendees;
+	   }
+
+	   public List<User> getStaff() {
+		   return staff;
+	   }
+
+	   public void setStaff(List<User> staff) {
+		   this.staff = staff;
+	   }
+
+	   public List<TicketType> getTicketTypes() {
+		   return ticketTypes;
+	   }
+
+	   public void setTicketTypes(List<TicketType> ticketTypes) {
+		   this.ticketTypes = ticketTypes;
+	   }
+
+	   public LocalDateTime getCreatedAt() {
+		   return createdAt;
+	   }
+
+	   public void setCreatedAt(LocalDateTime createdAt) {
+		   this.createdAt = createdAt;
+	   }
+
+	   public LocalDateTime getUpdatedAt() {
+		   return updatedAt;
+	   }
+
+	   public void setUpdatedAt(LocalDateTime updatedAt) {
+		   this.updatedAt = updatedAt;
+	   }
+
 	   @Override
 	   public int hashCode() {
 		return Objects.hash(createdAt, end, id, name, salesEnd, salesStart, start, status, updatedAt, venue);
@@ -107,6 +209,7 @@ public class Event {
 				&& Objects.equals(start, other.start) && status == other.status
 				&& Objects.equals(updatedAt, other.updatedAt) && Objects.equals(venue, other.venue);
 	   } 
+	   
 	   
 	   
 }

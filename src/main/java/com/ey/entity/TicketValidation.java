@@ -21,17 +21,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "ticket_validations")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class TicketValidation {
 
 	   @Id
@@ -73,6 +65,42 @@ public class TicketValidation {
 		TicketValidation other = (TicketValidation) obj;
 		return Objects.equals(createdAt, other.createdAt) && Objects.equals(id, other.id) && status == other.status
 				&& Objects.equals(updatedAt, other.updatedAt);
+	   }
+	   public UUID getId() {
+		   return id;
+	   }
+	   public void setId(UUID id) {
+		   this.id = id;
+	   }
+	   public TicketValidationStatusEnum getStatus() {
+		   return status;
+	   }
+	   public void setStatus(TicketValidationStatusEnum status) {
+		   this.status = status;
+	   }
+	   public TicketValidationMethod getValidationMethod() {
+		   return validationMethod;
+	   }
+	   public void setValidationMethod(TicketValidationMethod validationMethod) {
+		   this.validationMethod = validationMethod;
+	   }
+	   public Ticket getTicket() {
+		   return ticket;
+	   }
+	   public void setTicket(Ticket ticket) {
+		   this.ticket = ticket;
+	   }
+	   public LocalDateTime getCreatedAt() {
+		   return createdAt;
+	   }
+	   public void setCreatedAt(LocalDateTime createdAt) {
+		   this.createdAt = createdAt;
+	   }
+	   public LocalDateTime getUpdatedAt() {
+		   return updatedAt;
+	   }
+	   public void setUpdatedAt(LocalDateTime updatedAt) {
+		   this.updatedAt = updatedAt;
 	   }
 	   
 	   

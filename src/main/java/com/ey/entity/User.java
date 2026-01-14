@@ -20,19 +20,10 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "users")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+
 public class User {
 	
 	   @Id
@@ -93,6 +84,78 @@ public class User {
 		return Objects.equals(createdAt, other.createdAt) && Objects.equals(email, other.email)
 				&& Objects.equals(id, other.id) && Objects.equals(name, other.name)
 				&& Objects.equals(password, other.password) && Objects.equals(updatedAt, other.updatedAt);
+	   }
+
+	   public UUID getId() {
+		   return id;
+	   }
+
+	   public void setId(UUID id) {
+		   this.id = id;
+	   }
+
+	   public String getName() {
+		   return name;
+	   }
+
+	   public void setName(String name) {
+		   this.name = name;
+	   }
+
+	   public String getEmail() {
+		   return email;
+	   }
+
+	   public void setEmail(String email) {
+		   this.email = email;
+	   }
+
+	   public String getPassword() {
+		   return password;
+	   }
+
+	   public void setPassword(String password) {
+		   this.password = password;
+	   }
+
+	   public List<Event> getOrganizedEvents() {
+		   return organizedEvents;
+	   }
+
+	   public void setOrganizedEvents(List<Event> organizedEvents) {
+		   this.organizedEvents = organizedEvents;
+	   }
+
+	   public List<Event> getAttendingEvents() {
+		   return attendingEvents;
+	   }
+
+	   public void setAttendingEvents(List<Event> attendingEvents) {
+		   this.attendingEvents = attendingEvents;
+	   }
+
+	   public List<Event> getStaffingEvents() {
+		   return staffingEvents;
+	   }
+
+	   public void setStaffingEvents(List<Event> staffingEvents) {
+		   this.staffingEvents = staffingEvents;
+	   }
+
+	   public LocalDateTime getCreatedAt() {
+		   return createdAt;
+	   }
+
+	   public void setCreatedAt(LocalDateTime createdAt) {
+		   this.createdAt = createdAt;
+	   }
+
+	   public LocalDateTime getUpdatedAt() {
+		   return updatedAt;
+	   }
+
+	   public void setUpdatedAt(LocalDateTime updatedAt) {
+		   this.updatedAt = updatedAt;
 	   }
 	   
 	   

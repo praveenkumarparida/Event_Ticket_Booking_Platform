@@ -20,19 +20,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "ticket_types")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class TicketType {
 
 	   @Id
@@ -81,6 +71,70 @@ public class TicketType {
 		return Objects.equals(createdAt, other.createdAt) && Objects.equals(id, other.id)
 				&& Objects.equals(name, other.name) && Objects.equals(price, other.price)
 				&& Objects.equals(totalAvailable, other.totalAvailable) && Objects.equals(updatedAt, other.updatedAt);
+	   }
+
+	   public UUID getId() {
+		   return id;
+	   }
+
+	   public void setId(UUID id) {
+		   this.id = id;
+	   }
+
+	   public String getName() {
+		   return name;
+	   }
+
+	   public void setName(String name) {
+		   this.name = name;
+	   }
+
+	   public Double getPrice() {
+		   return price;
+	   }
+
+	   public void setPrice(Double price) {
+		   this.price = price;
+	   }
+
+	   public Integer getTotalAvailable() {
+		   return totalAvailable;
+	   }
+
+	   public void setTotalAvailable(Integer totalAvailable) {
+		   this.totalAvailable = totalAvailable;
+	   }
+
+	   public Event getEvent() {
+		   return event;
+	   }
+
+	   public void setEvent(Event event) {
+		   this.event = event;
+	   }
+
+	   public List<Ticket> getTickets() {
+		   return tickets;
+	   }
+
+	   public void setTickets(List<Ticket> tickets) {
+		   this.tickets = tickets;
+	   }
+
+	   public LocalDateTime getCreatedAt() {
+		   return createdAt;
+	   }
+
+	   public void setCreatedAt(LocalDateTime createdAt) {
+		   this.createdAt = createdAt;
+	   }
+
+	   public LocalDateTime getUpdatedAt() {
+		   return updatedAt;
+	   }
+
+	   public void setUpdatedAt(LocalDateTime updatedAt) {
+		   this.updatedAt = updatedAt;
 	   }
 	   
 	   
