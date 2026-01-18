@@ -5,11 +5,11 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.ey.entity.User;
+import com.ey.entity.TicketQr;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByEmail(String email);
-    boolean existsByEmail(String email);
+public interface TicketQrRepository extends JpaRepository<TicketQr, Long> {
+
+	Optional<TicketQr> findByCode(String code);
 }
 
