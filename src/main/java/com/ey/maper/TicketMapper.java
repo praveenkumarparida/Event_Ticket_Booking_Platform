@@ -1,7 +1,12 @@
 package com.ey.maper;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import com.ey.dto.request.TicketRequest;
+import com.ey.dto.response.AttendeeTicketResponse;
 import com.ey.dto.response.TicketResponse;
+import com.ey.entity.Event;
 import com.ey.entity.Ticket;
 import com.ey.entity.TicketType;
 import com.ey.entity.User;
@@ -48,4 +53,24 @@ public class TicketMapper {
 
         return r;
 	}
+	
+	public static AttendeeTicketResponse ToAttendeeTicketResponse(Ticket ticket) {
+
+        Event event = ticket.getTicketType().getEvent();
+
+        TicketStatus status = ticket.getStatus();
+
+        if (status == TicketStatus.PURCHASED && event.getEndTime().isBefore(LocalDateTime.now())) {
+            status = TicketStatus.EXPIRED;
+        }
+
+        return new AttendeeTicketResponse(
+                ticket.getId(),
+                event.getName(),
+                ticket.getTicketType().getName(),
+                ticket.getTicketType().getPrice(),
+                status,
+                event.getStartTime()
+        );
+    }
 }

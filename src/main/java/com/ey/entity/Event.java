@@ -1,9 +1,12 @@
 package com.ey.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.ey.enums.EventStatus;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -14,6 +17,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,8 +31,8 @@ public class Event {
     @Column(nullable = false)
     private String name;
 
-    private String startTime;
-    private String endTime;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
 
     @Column(nullable = false)
     private String venue;
@@ -39,13 +43,16 @@ public class Event {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organizer_id")
     private User organizer;
+    
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TicketType> ticketTypes = new ArrayList<>();
 
 	public Event() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Event(Long id, String name, String startTime, String endTime, String venue, EventStatus status,
+	public Event(Long id, String name, LocalDateTime startTime, LocalDateTime endTime, String venue, EventStatus status,
 			User organizer) {
 		super();
 		this.id = id;
@@ -73,19 +80,19 @@ public class Event {
 		this.name = name;
 	}
 
-	public String getStartTime() {
+	public LocalDateTime getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(String startTime) {
+	public void setStartTime(LocalDateTime startTime) {
 		this.startTime = startTime;
 	}
 
-	public String getEndTime() {
+	public LocalDateTime getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(String endTime) {
+	public void setEndTime(LocalDateTime endTime) {
 		this.endTime = endTime;
 	}
 

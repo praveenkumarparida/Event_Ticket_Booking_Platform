@@ -1,7 +1,9 @@
 package com.ey.enums;
 
 public enum TicketStatus {
-    PURCHASED,
-    CANCELLED
+	PURCHASED,
+    USED,
+    CANCELLED,
+    EXPIRED
 }
 

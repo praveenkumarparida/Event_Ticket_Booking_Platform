@@ -12,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -33,18 +34,22 @@ public class Ticket {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "attendee_id")
     private User attendee;
+    
+    @OneToOne(mappedBy = "ticket")
+    private TicketQr ticketQr;
 
 	public Ticket() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Ticket(Long id, TicketStatus status, TicketType ticketType, User attendee) {
+	public Ticket(Long id, TicketStatus status, TicketType ticketType, User attendee, TicketQr ticketQr) {
 		super();
 		this.id = id;
 		this.status = status;
 		this.ticketType = ticketType;
 		this.attendee = attendee;
+		this.ticketQr = ticketQr;
 	}
 
 	public Long getId() {
@@ -77,6 +82,14 @@ public class Ticket {
 
 	public void setAttendee(User attendee) {
 		this.attendee = attendee;
+	}
+
+	public TicketQr getTicketQr() {
+		return ticketQr;
+	}
+
+	public void setTicketQr(TicketQr ticketQr) {
+		this.ticketQr = ticketQr;
 	}
     
     

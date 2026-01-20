@@ -7,21 +7,21 @@ import jakarta.validation.constraints.Positive;
 
 public class TicketTypeRequest {
 
-	@NotBlank
+	@NotBlank(message = "name is required")
     private String name;
 
-    @NotNull
+    @NotNull(message = "price is required")
     @Positive
     private Double price;
 
-    @NotNull
+    @NotNull(message = "totalAvailable is required")
     @Min(0)
     private Integer totalAvailable;
 
     @Min(0)
     private Integer sold;
     
-    @NotNull
+//    @NotNull
     private Long eventId;
 
 	public TicketTypeRequest() {

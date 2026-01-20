@@ -6,10 +6,10 @@ public class TicketRequest {
 
 	private String status;
 
-    @NotNull
+    @NotNull(message = "ticketTypeId is required")
     private Long ticketTypeId;
 
-    @NotNull
+    @NotNull(message = "attendeeId is required")
     private Long attendeeId;
 
 	public TicketRequest() {

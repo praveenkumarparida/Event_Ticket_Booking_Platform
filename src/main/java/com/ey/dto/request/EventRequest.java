@@ -8,22 +8,22 @@ import jakarta.validation.constraints.NotNull;
 
 public class EventRequest {
 
-	@NotBlank
+	@NotBlank(message = "name is required")
     private String name;
 
-    @NotNull
+    @NotNull(message = "startTime is required")
 //    @FutureOrPresent
-    private String startTime;
+    private LocalDateTime startTime;
 
-    @NotNull
-    private String endTime;
+    @NotNull(message = "endTime is required")
+    private LocalDateTime endTime;
 
-    @NotBlank
+    @NotBlank(message = "venue is required")
     private String venue;
 
     private String status; // should match EventStatus enum name
 
-    @NotNull
+//    @NotNull
     private Long organizerId;
 
 	public EventRequest() {
@@ -39,19 +39,19 @@ public class EventRequest {
 		this.name = name;
 	}
 
-	public String getStartTime() {
+	public LocalDateTime getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(String startTime) {
+	public void setStartTime(LocalDateTime startTime) {
 		this.startTime = startTime;
 	}
 
-	public String getEndTime() {
+	public LocalDateTime getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(String endTime) {
+	public void setEndTime(LocalDateTime endTime) {
 		this.endTime = endTime;
 	}
 

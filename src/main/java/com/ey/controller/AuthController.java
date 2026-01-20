@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ey.dto.request.ForgotPasswordRequest;
 import com.ey.dto.request.LoginRequest;
+import com.ey.dto.request.ResetPasswordRequest;
 import com.ey.dto.request.SignupRequest;
 import com.ey.dto.response.AuthResponse;
 import com.ey.dto.response.SignupResponse;
@@ -28,6 +30,18 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<SignupResponse> signup(@RequestBody SignupRequest request) {
         return authService.signup(request);
+    }
+    
+    @PostMapping("/forgot-password")
+    public ResponseEntity<String> forgotPassword(@RequestBody ForgotPasswordRequest request) {
+
+        return authService.forgotPassword(request.getEmail());
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<String> resetPassword(@RequestBody ResetPasswordRequest request) {
+
+        return authService.resetPassword(request.getToken(),request.getNewPassword());
     }
 }
 

@@ -1,19 +1,25 @@
 package com.ey.dto.request;
 
-import jakarta.persistence.Column;
+import java.time.LocalDateTime;
+
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class UpdateEventRequest {
 
-	@NotBlank
+	@NotNull(message = "ID is required")
 	private Long id;
-	@NotBlank
+	
+	@NotBlank(message = "Name is required")
     private String name;
-	@NotBlank
-    private String startTime;
-	@NotBlank
-    private String endTime;
-	@NotBlank
+	
+	@NotBlank(message = "StartTime is required")
+    private LocalDateTime startTime;
+	
+	@NotBlank(message = "EndTime is required")
+    private LocalDateTime endTime;
+	
+	@NotBlank(message = "Venue is required")
     private String venue;
 	
 	public Long getId() {
@@ -28,16 +34,16 @@ public class UpdateEventRequest {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getStartTime() {
+	public LocalDateTime getStartTime() {
 		return startTime;
 	}
-	public void setStartTime(String startTime) {
+	public void setStartTime(LocalDateTime startTime) {
 		this.startTime = startTime;
 	}
-	public String getEndTime() {
+	public LocalDateTime getEndTime() {
 		return endTime;
 	}
-	public void setEndTime(String endTime) {
+	public void setEndTime(LocalDateTime endTime) {
 		this.endTime = endTime;
 	}
 	public String getVenue() {

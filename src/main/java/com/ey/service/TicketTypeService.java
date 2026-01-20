@@ -2,6 +2,8 @@ package com.ey.service;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,17 +30,24 @@ public class TicketTypeService {
 	
 	@Autowired
     private UserRepository userRepository;
+	
+	private Logger logger=LoggerFactory.getLogger(TicketTypeService.class);
 
     /* ORGANIZER */
     public ResponseEntity<TicketTypeResponse> createTicketType(Long eventId,TicketTypeRequest request,String email) {
 
         User organizer = userRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> {
+                	logger.error("User not found");
+                	return new RuntimeException("User not found");});
 
         Event event = eventRepository.findById(eventId)
-                .orElseThrow(() -> new RuntimeException("Event not found"));
+                .orElseThrow(() -> {
+                	logger.error("Event not found");
+                	return new RuntimeException("Event not found");});
         
         if (!event.getOrganizer().getId().equals(organizer.getId())) {
+        	logger.error("Organizer not allowed");
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
         
@@ -50,6 +59,8 @@ public class TicketTypeService {
         TicketType saved=ticketTypeRepository.save(ticketType);
         
         TicketTypeResponse response=TicketTypeMapper.toResponse(saved);
+        
+        logger.info("TicketType created successfully");
         return ResponseEntity.ok(response);
     }
 
@@ -62,6 +73,7 @@ public class TicketTypeService {
     												.map(TicketTypeMapper::toResponse)
     												.toList();
     	
+    	logger.info("Get all ticketTypes");
     	return ResponseEntity.ok(ticketTypeResponses);
     }
 }
